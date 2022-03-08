@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-bg);
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+.section__padding {
+    padding: 4rem 6rem;
+}
+
+.section__margin {
+    margin: 4rem 6rem;
+}
+
+.gradient__bg {
+
+    /* ff 3.6+ */
+    background:-moz-linear-gradient(90deg, rgba(152, 77, 56, 1) 0%, rgba(24, 30, 65, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(90deg, rgba(152, 77, 56, 1) 0%, rgba(24, 30, 65, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(90deg, rgba(152, 77, 56, 1) 0%, rgba(24, 30, 65, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#181E41', endColorstr='#984D38', GradientType=0 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(90deg, rgba(152, 77, 56, 1) 0%, rgba(24, 30, 65, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(90deg, rgba(152, 77, 56, 1) 0%, rgba(24, 30, 65, 1) 100%);
+
+}
+            

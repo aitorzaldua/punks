@@ -1,0 +1,70 @@
+.punks__navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 6rem;
+}
+
+.punks__navbar-links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.punks__navbar-links_logo {
+    margin-right: 2rem;
+    font-size: 25px;
+    line-height: 38px;
+}
+
+.punks__navbar-links_logo img{
+    width: 173px;
+    height: 38px;
+}
+
+.punks__navbar-links_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0rem 2rem;
+    flex-direction: row;
+}
+
+.punks__navbar-links_container p {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+
+    margin: 0rem 1 rem;
+    cursor: pointer;
+}
+
+.punks__navbar-links_container button{
+    background: linear-gradient(214.02deg, #B75CFF 6.04%, #671AE4 92.95%);
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px 20px;
+    width: 171px;
+    height: 50px;
+
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    line-height: 25px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+
+/* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    margin: 0px 40px;
+}
