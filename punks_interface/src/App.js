@@ -1,18 +1,19 @@
 import React from 'react';
 import './App.css';
 
-import { Brand, Collection, Footer, Header, YourNFT } from './containers';
-import { Navbar } from './components';
- 
+import { Collection, Footer, Header, YourNFT } from './containers';
+import { Navbar, Brand, CreateNFT } from './components';
+
 const App = () => {
   return (
     <div className='App'>
-      <div className='gradient__bg'>
+      <div className='home_navbar'>
         <Navbar />
         <Header />
       </div>
       <Brand />
       <YourNFT />
+      <CreateNFT />
       <Collection />
       <Footer />
     </div>

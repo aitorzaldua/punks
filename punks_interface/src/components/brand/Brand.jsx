@@ -7,4 +7,4 @@ const Brand = () => {
   )
 }
 
-export default Brand
+export default Brand;
