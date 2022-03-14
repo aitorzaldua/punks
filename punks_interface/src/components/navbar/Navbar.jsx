@@ -1,67 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 import logo from '../../assets/logo_dd.svg';
 import ethLogo from '../../assets/eth_logo.png';
 import './navbar.css'
-
-import useTruncatedAddress from './../../hooks/useTruncateAddress';
+import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
+import { connector } from  '../../config/web3';
+import useTruncatedAddress from '../../hooks/useTruncateAddress';
 
 const Navbar = () => {
 
-  //Check if wallet
+  const { active, activate, deactivate, account, error, library } = useWeb3React();
 
-  const [currentAccount, setCurrentAccount] = useState("");
-
-  const checkIfWalletIsConnected = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
-
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-        console.log("Found an authorized account:", account);
-        setCurrentAccount(account);
-      } else {
-        console.log("No authorized account found")
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const connect = () => {
+    activate(connector);
   }
 
-  //Connect the wallet
+  const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
-  const connectWallet = async () => {
-    try {
-      const { ethereum } = window;
+  const truncatedAddress = useTruncatedAddress(account);
 
-      if (!ethereum) {
-        alert("Get MetaMask!");
-        return;
-      }
+  const [balance, setBalance] = useState(0);
 
-      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+  const getBalance = useCallback(async () => {
+    const toSet = await library.eth.getBalance(account);
+    setBalance((toSet / 1e18).toFixed(2));
+  }, [library?.eth, account]);
 
-      console.log("Connected", accounts[0]);
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    checkIfWalletIsConnected();
-  }, [])
-
-  const truncatedAddress = useTruncatedAddress(currentAccount);
-
+  useEffect(() => { 
+    if (active) getBalance();
+  }, [active, getBalance]);
 
   return (
     <div className='punks__navbar'>
@@ -74,17 +40,19 @@ const Navbar = () => {
                 <p><a href="#CreateNft">Create NFT</a></p>
                 <p><a href="#Collection">Collection</a></p>
             </div>
-            {!currentAccount && (
-              <button className="button" onClick={connectWallet}>
-                Connect Wallet
-              </button>
-            )}
-            {currentAccount && (
-              <div className='account'>
-                <img src={ethLogo} alt='ethLogo' />
-                <p>{truncatedAddress}</p>
-              </div>
-            )}
+            <div>
+              {active?(
+                <p className='account'>{truncatedAddress} ~ {balance} ETH</p>
+              ) : (
+                <button
+                  type="button" 
+                  onClick={connect}
+                  disabled={isUnsupportedChain}
+                >{isUnsupportedChain ? "Chain no soportada" : "connectar wallet"}
+                </button>
+              )
+              }
+            </div>
         </div>
 
     </div>
