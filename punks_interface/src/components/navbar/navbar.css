@@ -45,11 +45,11 @@
 }
 
 .punks__navbar-links button{
-    background: linear-gradient(214.02deg, #FFBCAD.04%, #FF4820 92.95%);
+    background: var(--gradient-button);
     border-radius: 10px;
     align-items: center;
     padding: 10px 20px;
-    width: 200px;
+    width: 220px;
     height: 50px;
 
     font-family: var(--font-family);
@@ -62,13 +62,13 @@
     outline: none;
     cursor: pointer;
 
-/* Inside auto layout */
 
     flex: none;
     order: 3;
     flex-grow: 0;
     margin: 0px 40px;
 }
+
 
 .account{
     display: flex;
@@ -78,7 +78,7 @@
     border-radius: 25px;
     align-items: center;
     padding: 10px 28px;
-    width: 200px;
+    width: 275px;
     height: 50px;
 
     font-family: var(--account);

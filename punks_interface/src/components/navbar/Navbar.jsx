@@ -48,7 +48,7 @@ const Navbar = () => {
                   type="button" 
                   onClick={connect}
                   disabled={isUnsupportedChain}
-                >{isUnsupportedChain ? "Chain no soportada" : "connectar wallet"}
+                >{isUnsupportedChain ? "Unsupported Chain" : "Connect Wallet"}
                 </button>
               )
               }
