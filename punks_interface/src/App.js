@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 
 
-import { Collection, Footer, Header } from './containers';
-import { Navbar, CTA } from './components';
+import { Collection, Footer, Header, YourNFT } from './containers';
+import { Navbar, CTA, Brand } from './components';
 
 const App = () => {
 
@@ -13,9 +13,9 @@ const App = () => {
       <div className='home_navbar'>
         <Navbar />
         <Header />
-        <CTA />
       </div>
-      <Collection />
+      <Brand />
+      <YourNFT />
       <Footer />
     </div>
   )

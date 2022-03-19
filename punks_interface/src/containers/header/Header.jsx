@@ -18,6 +18,7 @@ const Header = () => {
   //We have to create a better reference in the browser
 
   const [maxSupply, setMaxSupply] = useState();
+  const [reminder, setReminder] = useState();
 
 
   const getMaxSupply = async () => {
@@ -29,10 +30,15 @@ const Header = () => {
               const punksContract = new ethers.Contract(contractAddress, contractABI, signer);
 
               const maxSupply = await punksContract.maxSupply();
-
               const maxSupplyNumber = maxSupply.toNumber();
 
+              const totalSupply = await punksContract.totalSupply();
+              const totalSupplyNumber = totalSupply.toNumber();
+              
+              const getReminder = maxSupplyNumber - totalSupplyNumber + 1;
+
               setMaxSupply(maxSupplyNumber);
+              setReminder(getReminder);
           } else {
             console.log("Ethereum object doesn't exist!");
           }
@@ -86,8 +92,11 @@ const Header = () => {
       <div className='header__content'>
 
         <h1 className='h1__headerText'>Create, Sell & Collect Your Own Creative NFT</h1>
-        <p>Draft Digital Punks is a collection of randomized Avatars whose metadata is stored on-chain. They have unique characteristics and there are only {maxSupply} in existence.</p>
-        <p>Each Punk is generated sequentially based on your address and current id, so it is unique, exclusive to you. To find out what your Punk would be if you mint right now, click the Punk Now! button.</p>
+        <p>Draft Digital Punks is a collection of randomized Avatars whose metadata is stored on-chain.</p>
+        <p>Each Punk is generated sequentially based on your address and current id, so it is unique, exclusive to you.</p>
+        <h4>There are only {maxSupply} in existence and {reminder} remains to minted.</h4>
+        
+          {/* . To find out what your Punk would be if you mint right now, click the Punk Now! button.</p> */}
       </div>
 
       <div className='header__image'>

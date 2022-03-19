@@ -35,8 +35,19 @@
     font-size: 17px;
     line-height: 180%;
     width: 500px;
-    height: 120px;
+    height: 75px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.header__content h4{
+    font-family: var(--account);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 180%;
+    width: 500px;
+    height: 120px;
+    color: var(--color-subtext);
 }
 
 .header__buttons {
