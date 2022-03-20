@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className='punks__navbar-links'>
             <div className='punks__navbar-links_container'>
                 <p><a href="#Header"> Home</a></p>
-                <p><a href="#CTA">Create NFT</a></p>
+                <p><a href="#YourNFT">Create NFT</a></p>
                 <p><a href="#Collection">Collection</a></p>
             </div>
             <div>

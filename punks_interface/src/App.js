@@ -3,7 +3,7 @@ import './App.css';
 
 
 import { Collection, Footer, Header, YourNFT } from './containers';
-import { Navbar, CTA, Brand } from './components';
+import { Navbar, CTA, Brands } from './components';
 
 const App = () => {
 
@@ -14,8 +14,9 @@ const App = () => {
         <Navbar />
         <Header />
       </div>
-      <Brand />
+      <Brands />
       <YourNFT />
+      <Collection />
       <Footer />
     </div>
   )
