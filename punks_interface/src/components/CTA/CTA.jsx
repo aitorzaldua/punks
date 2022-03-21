@@ -10,30 +10,25 @@ const CTA = () => {
 
    //Function 01: Mint
 
-   const [isMinting, setIsMinting] = useState(false);
+   /* const [message, setMessage] = useState(false); */
 
    const minting = async() => {
      const {ethereum} = window;
      if (ethereum){
+
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const punksContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-      const balance = await signer.getBalance();
-      const balance2 = ethers.utils.formatEther(balance);
-      const myAddress = await signer.getAddress();
-       console.log("all good : ",balance2, myAddress );
-
-
        punksContract.mint();
 
-      const balance3 = await signer.getBalance();
-      const balance4 = ethers.utils.formatEther(balance);
+       const punkToken = punksContract.tokenId;
 
-     const filter = punksContract.filters.Transfer(null, myAddress);
-      console.log ("a ver que es esto : ", filter);
+       console.log(punkToken);
 
-      console.log(balance2, "ahora", balance4);
+       /* const minted = "See your new NFT on the Gallery abow or in testnets.opensea.io/"; */
+
+       /* setMessage(minted); */
 
 
      }
@@ -59,6 +54,7 @@ const CTA = () => {
                 >Mint Now!
                 </button>
         </div> 
+        {/* <h3>{message}</h3> */}
     </div>
   )
 }
