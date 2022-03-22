@@ -1,42 +1,39 @@
 import React from 'react';
-import { useCallback, useEffect, useState } from "react";
+import { useWeb3React } from "@web3-react/core";
+
+import { Grid } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
 import './collection.css';
-import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
-import { connector } from  '../../config/web3';
-import useTruncatedAddress from '../../hooks/useTruncateAddress';
+import PunkCard from "../../components/punk-card";
+import Loading from "../../components/loading";
+import RequestAccess from "../../components/request-access";
+
+import { usePlatziPunksData } from '../../hooks/usePlatziPunksData';
+
 
 const Collection = () => {
-  const { active, activate, deactivate, account, error, library } = useWeb3React();
+ const { active } = useWeb3React();
+  const { punks, loading } = usePlatziPunksData();
 
-  const connect = () => {
-    activate(connector);
-  }
+  if (!active) return <RequestAccess />;
 
-  const isUnsupportedChain = error instanceof UnsupportedChainIdError;
-
-  const truncatedAddress = useTruncatedAddress(account);
-
-  const [balance, setBalance] = useState(0);
-
-  const getBalance = useCallback(async () => {
-    const toSet = await library.eth.getBalance(account);
-    setBalance((toSet / 1e18).toFixed(2));
-  }, [library?.eth, account]);
-
-  useEffect(() => { 
-    if (active) getBalance();
-  }, [active, getBalance]);
   return (
-    <div className='collection' section_margin id="Collection">
-      <div className='collection__title'>
-        <h3>Explore the Collection</h3>
-        <p className='account'>{truncatedAddress} ~ {balance} ETH</p>
-      </div>
-      <div className='collection__images'>
-
-      </div>
-    </div>
-  )
-}
+    <>
+    {/* Vista que carga la galeria */}
+      {loading ? (
+        <Loading />
+      ) : (
+        <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
+          {punks.map(({ name, image, tokenId }) => (
+            <Link key={tokenId} to={`/punks/${tokenId}`}>
+              <PunkCard image={image} name={name} />
+            </Link>
+          ))}
+        </Grid>
+      )}
+    </>
+  );
+};
 
 export default Collection;
